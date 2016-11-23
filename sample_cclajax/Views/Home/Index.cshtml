@@ -1,0 +1,33 @@
+﻿<div class="jumbotron">
+    <h1>Cerner Ajax </h1>
+    <p class="lead">an custom transport for propritary server which only return json string, a new dataType is created call CCL</p>
+    <p><a href="#" id="tryit" class="btn btn-primary btn-sm">Try it</a></p>
+</div>
+<div>
+    <h3>Output Content</h3>
+    <pre id="result">
+</pre>
+
+</div>
+@section scripts {
+    <script type="text/javascript">
+
+        $("#tryit").click(function () {
+            $.ajax({
+                type: 'GET',
+                url: '/api/values/getjson',
+                dataType: "ccl",
+                success: function (data) {
+                    var text = JSON.stringify(data, null, 4);
+                    $("#result").text(text);
+                },
+                error: function (request, status, error) {
+                    alert(error);
+                }
+            })
+        });
+       
+    </script>
+    <script src="~/js/ccl_ajax.js"></script>
+}
+
